@@ -76,15 +76,19 @@ generally could see without login:
 1. home screen to select product,
 2. product screen to show product detail and add product to cart
 3. cart screen to proceed checkout
+4. side bar and nav bar
 
 create user
 
 1. register user account
 2. in MongoDB please choose one user and change the role as 'admin'
 3. signin user:
-   As 'admin' role, could choose product in dropdown to create and update a product
 
-As 'user' role, could proceed the whole checkout process
+   - As 'admin' role, could choose product in dropdown to create and update a product
+   - a product detail or images of a product could be uploaded and deleted seperately
+   - thorugh signin as admin > click product in dropdown > click edit in a product.
+
+   - As 'user' role, could proceed the whole checkout process
 
 # Files in this porject
 
