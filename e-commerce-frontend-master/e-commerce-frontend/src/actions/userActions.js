@@ -18,7 +18,6 @@ const signin = (email, password) => async (dispatch) => {
       email,
       password,
     });
-    console.log('result.data :>> ', result.data);
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: result.data });
   } catch (err) {
     const msg = err.response.data.errors;
