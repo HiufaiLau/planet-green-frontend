@@ -17,13 +17,9 @@ const getProducts = (options) => async (dispatch) => {
   try {
     let result;
     if (options) {
-      result = await axios.get(`/api/products?${options[0]}=${options[1]}`, {
-        AccessControlAllowCredentials: true,
-      });
+      result = await axios.get(`/api/products?${options[0]}=${options[1]}`);
     } else {
-      result = await axios.get('/api/products/', {
-        AccessControlAllowCredentials: true,
-      });
+      result = await axios.get('/api/products/');
     }
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: result.data.data });
   } catch (err) {

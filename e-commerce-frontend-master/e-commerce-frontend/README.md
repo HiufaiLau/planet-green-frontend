@@ -85,45 +85,51 @@ create user
 3. signin user:
 
    - As 'admin' role, could choose product in dropdown to create and update a product
-   - a product detail or images of a product could be uploaded and deleted seperately
-   - thorugh signin as admin > click product in dropdown > click edit in a product.
+
+     - a product detail or images of a product could be uploaded and deleted seperately
+     - thorugh signin as admin > click product in dropdown > click edit in a product.
 
    - As 'user' role, could proceed the whole checkout process
 
 # Files in this porject
 
-1. App.js
+1. setupProxy.js
+
+- to solve the CORS problem and handle the http request from different port
+- The CORS mechanism supports secure cross-origin requests and data transfers between browsers and servers.
+
+2. App.js
 
 - defined all the routes to different screens
 
-2. store.js
+3. store.js
 
 - initialized cookie states
 - root reducer to combine all reducers
 
-3. reducers folder
+4. reducers folder
 
 - contains differents reducers to specify different states change
 
-4. actions folder
+5. actions folder
 
 - contains different actions to fetch data and make request.
 - Actions are payloads of information that send data from your application to your store. They are the only source of information for the store.
 
-5. constants folder
+6. constants folder
 
 - contains different action types
 - As actions must have a type property that indicates the type of action being performed.
 - Types should typically be defined as string constants.
 
-6. screens folder
+7. screens folder
 
 - like the view, display information at browser
 
-7. components folder
+8. components folder
 
 - contains all small components which would be imported to screens
 
-8. styles folder
+9. styles folder
 
 - contain all stlying for this apps
