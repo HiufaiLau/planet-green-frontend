@@ -1,0 +1,126 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+
+import CheckoutSteps from '../components/CheckoutSteps';
+
+import '../styles/PlaceOrder.css';
+
+function PlaceOrderScreen(props) {
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  const cart = useSelector((state) => state.cart);
+  const { cartItems, shipping, payment } = cart;
+  if (!shipping.address) {
+    props.history.push('/signin?redirect=shipping');
+  } else if (!payment.paymentMethod) {
+    props.history.push('/signin?redirect=payment');
+  }
+  const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
+  const shippingPrice = itemsPrice > 100 ? 0 : 10;
+  const taxPrice = 0.15 * itemsPrice;
+  const totalPrice = itemsPrice + shippingPrice + taxPrice;
+
+  const placeOrderHandler = () => {
+    props.history.push('/signin?redirect=paymentsuccess');
+  };
+
+  return (
+    <div>
+      <div className='back-to-homepage'>
+        <Link to='/shipping'>Back to shipping</Link>
+      </div>
+      {userInfo && userInfo?.role === 'user' ? (
+        <>
+          <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
+          <div className='placeorder'>
+            <div className='placeorder-info'>
+              <div>
+                <h3>Shipping</h3>
+                <div>
+                  <p>
+                    {cart.shipping?.title + ' ' + cart.shipping?.shippingName}
+                  </p>
+                  <p>{cart.shipping?.address},</p>
+                  <p>{cart.shipping?.city},</p>
+                  <p>{cart.shipping?.postalCode}, </p>
+                  <p>{cart.shipping?.country}</p>
+                </div>
+              </div>
+              <div>
+                <h3>Payment</h3>
+                <div>Payment Method: {cart.payment.paymentMethod}</div>
+              </div>
+              <div>
+                <ul className='cart-list-container'>
+                  <li>
+                    <h3>Shopping Cart</h3>
+                    <div>Price</div>
+                  </li>
+                  {cartItems.length === 0 ? (
+                    <div>Cart is empty</div>
+                  ) : (
+                    cartItems.map((item) => (
+                      <li>
+                        <div className='cart-image'>
+                          <img
+                            src={`http://localhost:5000/images/${item.image}`}
+                            alt='product'
+                          />
+                        </div>
+                        <div className='cart-name'>
+                          <div>
+                            <Link to={'/product/' + item.product}>
+                              {item.name}
+                            </Link>
+                          </div>
+                          <div>Qty: {item.qty}</div>
+                        </div>
+                        <div className='cart-price'>${item.price}</div>
+                      </li>
+                    ))
+                  )}
+                </ul>
+              </div>
+            </div>
+            <div className='placeorder-action'>
+              <ul>
+                <li>
+                  <button
+                    className='button primary full-width'
+                    onClick={placeOrderHandler}
+                  >
+                    Place Order
+                  </button>
+                </li>
+                <li>
+                  <h3>Order Summary</h3>
+                </li>
+                <li>
+                  <div>Items</div>
+                  <div>${itemsPrice}</div>
+                </li>
+                <li>
+                  <div>Shipping</div>
+                  <div>${shippingPrice}</div>
+                </li>
+                <li>
+                  <div>Tax</div>
+                  <div>${taxPrice}</div>
+                </li>
+                <li>
+                  <div>Order Total</div>
+                  <div>${totalPrice}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </>
+      ) : (
+        <Redirect to='/signin' />
+      )}
+    </div>
+  );
+}
+
+export default PlaceOrderScreen;

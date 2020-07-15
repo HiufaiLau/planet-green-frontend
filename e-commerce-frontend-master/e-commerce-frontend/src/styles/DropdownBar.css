@@ -1,0 +1,30 @@
+/* dropdown */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+.dropdown-content {
+  border-left: 10px solid #ccf5cc;
+  text-align: left;
+  width: 15vw;
+  height: 20vh;
+  position: absolute;
+  display: none;
+  right: 0;
+  padding: 1rem;
+  list-style-type: none;
+  z-index: 1;
+  background-color: #fafafa;
+  margin-top: 0.4rem;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content > li > a:hover {
+  color: #00a3494f;
+}
+
+.dropdown-content > li {
+  margin-top: 10%;
+}

@@ -1,0 +1,81 @@
+.App {
+  text-align: center;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+html {
+  font-size: 62.5%; /* 16px * 62.5 = 10px = 1rem */
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font: 1.6rem Helvetica;
+  height: 100vh;
+}
+button {
+  font-size: 1.6rem;
+}
+.full-width {
+  width: 100%;
+}
+#root {
+  height: 100%;
+}
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%;
+}
+
+.main {
+  grid-area: main;
+  margin: 5%;
+}
+.footer {
+  grid-area: footer;
+  color: #3131318a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  color: #647765;
+}
+a:hover {
+  color: #00a3494f;
+}
+
+/*category*/
+.categories {
+  padding: 0;
+  list-style-type: none;
+}
+.categories a {
+  color: #3131318a;
+  display: flex;
+  padding: 1rem;
+  margin-top: 3%;
+}
+.categories a:hover {
+  color: #00a3494f;
+}
+
+
+
+
+
+
+
+
